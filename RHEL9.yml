@@ -21,6 +21,11 @@
         path: /etc/resolv.conf
         line: nameserver 8.8.8.8
         state: present
+    - name: configure hostname to server1.demo.local  
+      ansible.builtin.hostname:
+        name: server1.demo.local
+
+
 
 
 
