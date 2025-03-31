@@ -1,32 +1,27 @@
 ---
-- name: Register rhel 9 with org id and activation key
-  hosts: all
+- name: A simple playbook to configure a host
+  hosts: rhel9
+  vars:
+    services:
+      - cockpit
+      - firewalld
+      - httpd
   tasks:
-    - name: subscription-manager register
-      ansible.builtin.command: subscription-manager register --org=HRB --activationkey=AK-6boxing-rhel9
-
-- name: update rhel and install packages
-  hosts: all
-  tasks:
-    - name: update all packages
-      ansible.builtin.package:
-        name: "*"
-        state: latest
-    - name: install podman and cockpit
-      ansible.builtin.package:
-        name:
-          - podman
-          - cockpit
-        state: present
-    - name: enable firewalld
-      ansible.builtin.service:
-        name: firewalld
-        state: started
-    - name: disable cups
-      ansible.builtin.service:
-        name: cups
-        state: stopped
-    - name: configure dns server
+    - name: Configure hostname and FQDN
+      ansible.builtin.hostname:
+        name: "{{ inventory_hostname }}"
+        use: systemd
+    - name: Configure dns server to 1.1.1.1
       ansible.builtin.lineinfile:
-        path: /etc/resolve.conf
-        line: nameserver 9.9.9.9
+        path: /etc/systemd/resolved.conf
+        line: DNS=1.1.1.1
+        regexp: ^DNS=
+    - name: install services 
+      ansible.builtin.package:
+        name: "{{ services }}"
+        state: present
+
+
+
+      
+    

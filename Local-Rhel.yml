@@ -1,0 +1,31 @@
+---
+- name: Change hostname and FQDN on local machine
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: true
+
+  vars_prompt:
+    - name: new_hostname
+      prompt: "Enter the new hostname"
+      private: no
+    - name: new_fqdn
+      prompt: "Enter the fully qualified domain name (FQDN)"
+      private: no
+
+  tasks:
+    - name: Set the system hostname
+      ansible.builtin.hostname:
+        name: "{{ new_hostname }}"
+
+    - name: Update /etc/hosts with FQDN
+      lineinfile:
+        path: /etc/hosts
+        regexp: '^127\.0\.1\.1'
+        line: "127.0.1.1 {{ new_fqdn }} {{ new_hostname }}"
+        state: present
+
+    - name: Update all the remaining packages
+      ansible.builtin.package:
+       name: "*"
+       state: latest
