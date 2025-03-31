@@ -5,13 +5,18 @@
     services:
       - cockpit
       - firewalld
-      - httpd 
+      - httpd
+      - systemd 
   tasks:
     - name: Register system in Red hat with org ID and activation key
       community.general.redhat_subscription:
         state: present
         org_id: 11009103
         activationkey: Nassri-123
+    - name: install services 
+      ansible.builtin.package:
+        name: "{{ services }}"
+        state: present
     - name: Configure hostname and FQDN
       ansible.builtin.hostname:
         name: "{{ inventory_hostname }}"
@@ -21,12 +26,7 @@
         path: /etc/systemd/resolved.conf
         line: DNS=1.1.1.1
         regexp: ^DNS=
-    - name: install services 
-      ansible.builtin.package:
-        name: "{{ services }}"
-        state: present
-
-
+    
 
 
       
