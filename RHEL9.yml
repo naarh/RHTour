@@ -26,6 +26,21 @@
         service: cockpit
         permanent: true
         state: enabled
+    - name: update dnf packages 
+      ansible.builtin.package:
+        name: '*'
+        state: latest
+    - name: create users Jose and Miguel 
+      ansible.builtin.user:
+        name: "{{ item }}"
+      loop:
+        - Jose
+        - Miguel
+
+
+    
+
+
 
 
       
