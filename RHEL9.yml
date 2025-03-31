@@ -16,14 +16,20 @@
       ansible.builtin.package:
         name: "{{ services }}"
         state: present
-    - name: Configure dns server  8.8.8.8 no systemd 
-      ansible.builtin.lineinfile:
-        path: /etc/resolv.conf
-        line: nameserver 8.8.8.8
-        state: present
-    - name: configure hostname to server1.demo.local  
-      ansible.builtin.hostname:
-        name: server1.demo.local
+    - name: start services 
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: started
+      loop: "{{ services }}"
+    - name: open services on firewall   
+      ansible.posix.firewalld:
+        service: "{{ item }}"
+        permanent: true
+        state: enabled
+        immediate: true
+      loop: "{{ services }}"
+
+
 
 
 
