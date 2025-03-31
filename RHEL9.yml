@@ -1,11 +1,12 @@
 ---
 - name: A simple playbook to configure a host
   hosts: rhel9
+  gather_facts: no 
   vars:
     services:
       - cockpit
       - firewalld
-      - httpd
+      - httpd 
   tasks:
     - name: Configure hostname and FQDN
       ansible.builtin.hostname:
@@ -20,6 +21,7 @@
       ansible.builtin.package:
         name: "{{ services }}"
         state: present
+
 
 
 
