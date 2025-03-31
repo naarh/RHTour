@@ -1,7 +1,6 @@
 ---
 - name: A simple playbook to configure a host
   hosts: rhel9
-  become: true 
   vars:
     services:
       - cockpit
