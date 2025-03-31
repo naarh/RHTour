@@ -6,12 +6,16 @@
       - cockpit
       - firewalld
       - httpd
+      - chrony
   tasks:
     - name: Register system in Red hat with org ID and activation key
       community.general.redhat_subscription:
         state: present
         org_id: 11009103
         activationkey: Nassri-123
+    - name: configure server hostname to rhel9.demo.redhat 
+      ansible.builtin.hostname:
+        name: rhel9.demo.redhat.com
     - name: install services 
       ansible.builtin.package:
         name: "{{ services }}"
@@ -21,6 +25,11 @@
         name: "{{ item }}"
         state: started
       loop: "{{ services }}"
+    - name: configure ntp to point to pool.ntp.org 
+      ansible.builtin.lineinfile:
+        path: /etc/chrony.conf
+        regexp: ^Server
+        line: Server pool.ntp.org iburst
     - name: enable cockpit on firewall 
       ansible.posix.firewalld:
         service: cockpit
@@ -36,6 +45,13 @@
       loop:
         - Jose
         - Miguel
+   
+
+     
+
+
+
+
 
 
     
