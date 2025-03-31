@@ -6,7 +6,7 @@
       - cockpit
       - firewalld
       - httpd
-      - chronyd
+      - chrony
   tasks:
     - name: Register system in Red hat with org ID and activation key
       community.general.redhat_subscription:
