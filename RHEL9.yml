@@ -6,7 +6,6 @@
       - cockpit
       - firewalld
       - httpd
-      - systemd 
   tasks:
     - name: Register system in Red hat with org ID and activation key
       community.general.redhat_subscription:
@@ -17,15 +16,42 @@
       ansible.builtin.package:
         name: "{{ services }}"
         state: present
-    - name: Configure hostname and FQDN
-      ansible.builtin.hostname:
-        name: "{{ inventory_hostname }}"
-        use: systemd
-    - name: Configure dns server to 1.1.1.1
+    - name: Configure dns server  8.8.8.8 no systemd 
       ansible.builtin.lineinfile:
-        path: /etc/systemd/resolved.conf
-        line: DNS=1.1.1.1
-        regexp: ^DNS=
+        path: /etc/resolv.conf
+        line: nameserver 8.8.8.8
+        state: present
+
+
+
+
+
+    
+  
+
+    
+
+    
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 
