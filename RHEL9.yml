@@ -21,13 +21,19 @@
         name: "{{ item }}"
         state: started
       loop: "{{ services }}"
-    - name: open services on firewall   
+    - name: enable cockpit on firewall 
       ansible.posix.firewalld:
-        service: "{{ item }}"
+        service: cockpit
         permanent: true
         state: enabled
-        immediate: true
-      loop: "{{ services }}"
+
+
+      
+
+
+
+
+
 
 
 
