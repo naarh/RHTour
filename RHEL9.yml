@@ -39,21 +39,26 @@
         service: cockpit
         permanent: true
         state: enabled
+    - name: start chronyd service 
+      ansible.builtin.service:
+        name: chronyd
+        state: restarted
+        enabled: true
     - name: update dnf packages 
       ansible.builtin.package:
         name: '*'
         state: latest
+    - name: enable ntp on firewall   
+      ansible.posix.firewalld:
+        service: ntp
+        permanent: true
+        state: enabled
     - name: create users Jose and Miguel 
       ansible.builtin.user:
         name: "{{ item }}"
       loop:
         - Jose
         - Miguel
-    - name: enable ntp on firewall   
-      ansible.posix.firewalld:
-        service: ntp
-        permanent: true
-        state: enabled
 
 
 
