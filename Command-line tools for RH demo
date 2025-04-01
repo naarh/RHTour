@@ -16,6 +16,12 @@ sudo systemctl restart chronyd
 
 Before install anysthing
 
+Red Hat Registestration
+
+org_id: 11009103
+activationkey: Nassri-123
+
+
 hostnamectl
 firewall-cmd --list-services
 systemctl status cockpit

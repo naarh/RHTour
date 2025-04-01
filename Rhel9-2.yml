@@ -1,0 +1,32 @@
+---
+- name: Set rhel9.demo.redhat.com hostname
+  hosts: rhel9
+  tasks:
+    - name: Set hostname
+      ansible.builtin.hostname:
+        name: rhel9.demo.redhat.com
+    - name: Register with activationkey and org
+      community.general.redhat_subscription:
+        state: present
+        activationkey: "{{ _activationkey_ }}"
+        org_id: ABCDEFG
+    - name: install firewalld service 
+      ansible.builtin.package:
+        name: firewalld
+        state: present
+    - name: install cockpit service 
+      ansible.builtin.package:
+        name: cockpit
+        state: present
+    - name: enable and activate firewall 
+      ansible.builtin.service:
+        name: firewalld
+        enabled: true
+        state: started
+    - name: open cockpit ports on firewall 
+      ansible.posix.firewalld:
+        port: 9090/tcp
+        permanent: true
+        state: enabled
+
+
