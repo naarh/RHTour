@@ -59,6 +59,12 @@
       loop:
         - Jose
         - Miguel
+    - name: restart firewalld 
+      ansible.builtin.service:
+        name: firewalld
+        state: restarted
+
+
 
 
 

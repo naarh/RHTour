@@ -1,3 +1,7 @@
+admin
+ec2
+Admin123$%&
+
 Subscription Manager
 subscription-manager status
 
@@ -16,3 +20,5 @@ hostnamectl
 firewall-cmd --list-services
 systemctl status cockpit
 subscription-manager list
+netstat -nap
+netstat -nap |grep 9090
