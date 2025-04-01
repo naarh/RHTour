@@ -1,0 +1,18 @@
+Subscription Manager
+subscription-manager status
+
+NTP
+dnf info chrony
+cat /etc/chrony.conf | grep '^server'
+vi  /etc/chrony.conf
+chronyc sources -v
+sudo systemctl restart chronyd
+
+
+
+Before install anysthing
+
+hostnamectl
+firewall-cmd --list-services
+systemctl status cockpit
+subscription-manager list

@@ -33,7 +33,7 @@
       ansible.builtin.lineinfile:
         path: /etc/chrony.conf
         regexp: ^Server
-        line: Server pool.ntp.org iburst
+        line: Server time.cloudflare.com iburst
     - name: enable cockpit on firewall 
       ansible.posix.firewalld:
         service: cockpit
