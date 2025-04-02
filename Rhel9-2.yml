@@ -14,11 +14,34 @@
       ansible.builtin.package:
         name: cockpit
         state: latest
+    - name: install ntpd service for rhel9 
+      ansible.builtin.package:
+        name: chrony
+        state: latest
     - name : start cockpit service 
       ansible.builtin.service:
         name: cockpit
         state: started
         enabled: true
+    - name : enable firewall service 
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: true
+    - name : add cockpit and ntp service to firewall 
+      ansible.posix.firewalld:
+        service: "{{ item }}"
+        permanent: true
+        state: enabled
+        immediate: true
+      loop:
+        - cockpit
+        - ntpd
+
+
+
+      
+
 
 
 
