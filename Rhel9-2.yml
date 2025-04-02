@@ -28,7 +28,7 @@
         name: firewalld
         state: started
         enabled: true
-    - name : add cockpit and chronyd service to firewall 
+    - name : add cockpit and chrony service to firewall 
       ansible.posix.firewalld:
         service: "{{ item }}"
         permanent: true
@@ -36,7 +36,7 @@
         immediate: true
       loop:
         - cockpit
-        - chronyd
+        - chrony
     - name: configure ntp service to use time.cloudflare.com 
       ansible.builtin.lineinfile:
         path: /etc/chrony.conf
