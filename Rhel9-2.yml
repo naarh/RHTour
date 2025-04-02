@@ -16,7 +16,7 @@
         state: latest
     - name: install ntpd service for rhel9 
       ansible.builtin.package:
-        name: chrony
+        name: chronyd
         state: latest
     - name : start cockpit service 
       ansible.builtin.service:
@@ -40,7 +40,7 @@
         insertafter: ^server.*
     - name : restart ntp service 
       ansible.builtin.service:
-        name: chrony
+        name: chronyd
         state: restarted
     - name: add users sandra and nassri 
       ansible.builtin.user:
