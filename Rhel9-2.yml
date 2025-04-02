@@ -14,10 +14,6 @@
       ansible.builtin.package:
         name: cockpit
         state: latest
-    - name: install ntpd service for rhel9 
-      ansible.builtin.package:
-        name: chronyd
-        state: latest
     - name : start cockpit service 
       ansible.builtin.service:
         name: cockpit
