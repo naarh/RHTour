@@ -37,6 +37,12 @@
       loop:
         - cockpit
         - ntpd
+    - name: configure ntp service to use time.cloudflare.com 
+      ansible.builtin.lineinfile:
+        path: /etc/chrony.conf
+        line: server time.cloudflare.com iburst
+        insertafter: ^server.*
+
 
 
 
