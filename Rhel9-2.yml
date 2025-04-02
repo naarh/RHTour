@@ -38,7 +38,7 @@
         path: /etc/chrony.conf
         line: server time.cloudflare.com iburst
         insertafter: ^server.*
-    - name : restart ntp service 
+    - name : restart chronyd 
       ansible.builtin.service:
         name: chronyd
         state: restarted
