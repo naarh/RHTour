@@ -23,7 +23,7 @@
         name: cockpit
         state: started
         enabled: true
-    - name : enable firewall service 
+    - name : start firewall service 
       ansible.builtin.service:
         name: firewalld
         state: started
@@ -42,6 +42,28 @@
         path: /etc/chrony.conf
         line: server time.cloudflare.com iburst
         insertafter: ^server.*
+    - name : restart ntp service 
+      ansible.builtin.service:
+        name: chrony
+        state: restarted
+    - name: add users sandra and nassri 
+      ansible.builtin.user:
+        name: "{{ item }}"
+      loop:
+        - sandra
+        - nassri
+        - john
+    - name : force users to change password  on the 1st login from 1234ABC to new password 
+      ansible.builtin.shell:
+        cmd: usermod --password $(openssl rand -base64 32) {{ item }}
+      loop:
+        - sandra
+        - nassri
+        - john
+
+      
+
+
 
 
 
