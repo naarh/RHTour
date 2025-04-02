@@ -52,6 +52,13 @@
         - sandra
         - nassri
         - john
+    - name :  add nassri to sudoers 
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers.d/nassri
+        line: 'nassri ALL=(ALL) NOPASSWD: ALL'
+        create: true
+        validate: visudo -cf %s
+
 
       
 
