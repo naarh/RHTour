@@ -4,7 +4,7 @@
   tasks:
     - name: Set hostname
       ansible.builtin.hostname:
-        name: rhel9-changed.demo.redhat.com
+        name: rhel9-new.demo.redhat.com
     - name: Register rhel server with org and activation key 
       community.general.redhat_subscription:
         state: present
