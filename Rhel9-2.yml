@@ -10,6 +10,16 @@
         state: present
         org_id: 11009103
         activationkey: Nassri-123
+    - name: install cockpit service 
+      ansible.builtin.package:
+        name: cockpit
+        state: latest
+    - name : start cockpit service 
+      ansible.builtin.service:
+        name: cockpit
+        state: started
+        enabled: true
+
 
 
 
