@@ -42,20 +42,13 @@
         path: /etc/chrony.conf
         line: server time.cloudflare.com iburst
         insertafter: ^server.*
-    - name : restart chronyd 
+    - name: restart chronyd 
       ansible.builtin.service:
         name: chronyd
         state: restarted
     - name: add users sandra and nassri 
       ansible.builtin.user:
         name: "{{ item }}"
-      loop:
-        - sandra
-        - nassri
-        - john
-    - name : force users to change password  on the 1st login from 1234ABC to new password 
-      ansible.builtin.shell:
-        cmd: usermod --password $(openssl rand -base64 32) {{ item }}
       loop:
         - sandra
         - nassri

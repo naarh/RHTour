@@ -34,6 +34,12 @@
         permanent: true
         state: enabled
         immediate: true
+    - name: install ntpd service 
+      ansible.builtin.package:
+        name: ntp
+        state: present
+
+
 
 
 
