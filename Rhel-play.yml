@@ -10,7 +10,6 @@
         state: present
         activationkey: "{{ activationkey }}"
         org_id: 11009103
-        auto_attach: true
     - name: Configure hostname
       ansible.builtin.hostname:
         name: rhel9.demo-lisbon.redhat.com
