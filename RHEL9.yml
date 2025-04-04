@@ -34,6 +34,24 @@
         permanent: true
         state: enabled
         immediate: true
+    - name: configure /etc/chrony.conf to use time.cloudflare.com 
+      ansible.builtin.copy:
+        dest: /etc/chrony.conf
+        content: "server time.cloudflare.com iburst\n"
+        backup: true
+    - name: restart chronyd service 
+      ansible.builtin.service:
+        name: chronyd
+        state: restarted
+        enabled: true
+
+
+
+
+      
+
+
+
 
 
 
