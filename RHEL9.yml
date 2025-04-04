@@ -10,3 +10,30 @@
     - name: set hostname
       ansible.builtin.hostname:
         name: rhel9-demo.lisbon.redhat.com
+    - name: install cockpit service 
+      ansible.builtin.package:
+        name: cockpit
+        state: latest
+    - name: start cockpit service 
+      ansible.builtin.service:
+        name: cockpit
+        state: started
+        enabled: true
+    - name: install firewall service  
+      ansible.builtin.package:
+        name: firewalld
+        state: latest
+    - name: start firewall service 
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: true
+    - name: enable cockpit service in firewall 
+      ansible.posix.firewalld:
+        service: cockpit
+        permanent: true
+        state: enabled
+        immediate: true
+
+
+
