@@ -1,6 +1,6 @@
 ---
 - name: Register RHEL 9 with activation key and configure hostname
-  hosts: RHEL9
+  hosts: rhel9
   tasks:
     - name: Register RHEL 9 with activation key
       community.general.redhat_subscription:
