@@ -4,6 +4,7 @@ Admin123$%&
 
 Subscription Manager
 subscription-manager status
+rhc status
 
 NTP
 dnf info chrony
