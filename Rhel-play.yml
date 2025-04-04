@@ -1,14 +1,11 @@
 ---
 - name: Register RHEL 9 with activationkey
   hosts: all
-  vars:
-    key:
-      - Nassri-123
   tasks:
     - name: Register RHEL 9 with activationkey
       community.general.redhat_subscription:
         state: present
-        activationkey: "{{ key }}"
+        activationkey: Nassri-123
         org_id: 11009103
     - name: Configure hostname
       ansible.builtin.hostname:
