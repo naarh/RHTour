@@ -29,3 +29,4 @@ systemctl status cockpit
 subscription-manager list
 netstat -nap
 netstat -nap |grep 9090
+# install services & activate firewall & enable ports on firewall 
