@@ -7,7 +7,6 @@
         state: present
         activationkey: Nassri-123
         org_id: 110009103
-        auto_attach: true
     - name: set hostname
       ansible.builtin.hostname:
         name: rhel9.demo-lisbon.redhat.com
