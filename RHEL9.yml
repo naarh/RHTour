@@ -1,8 +1,8 @@
 ---
-- name: register rhel9 with activationkey
+- name: subscription-manager module demo
   hosts: rhel9
   tasks:
-    - name: register with subscription-manager
+    - name: configure subscription
       community.general.redhat_subscription:
         state: present
         activationkey: Nassri-123
