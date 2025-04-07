@@ -1,5 +1,5 @@
 ---
-- name: register server with activation key and configure hostname
+- name: register server with activation key and set hostname
   hosts: rhel9
   tasks:
     - name: register with activationkey
@@ -7,26 +7,6 @@
         state: present
         activationkey: Nassri-123
         org_id: 11009103
-    - name: configure hostname
+    - name: set hostname
       ansible.builtin.hostname:
-        name: rhel9.demo-lx.redhat.com
-    - name: install firewall service  
-      ansible.builtin.package:
-        name: firewalld
-        state: latest
-    - name: enable firewall service 
-      ansible.builtin.service:
-        name: firewalld
-        state: started
-        enabled: true
-    # install httpd service & enable httpd service 
-    - name: Install httpd service
-      ansible.builtin.package:
-        name: httpd
-        state: latest
-    - name: Enable httpd service
-      ansible.builtin.service:
-        name: httpd
-        state: started
-        enabled: true
-
+        name: rhel9.demo-lisbon.redhat.com
