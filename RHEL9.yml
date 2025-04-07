@@ -1,37 +1,12 @@
 ---
-- name: register rhel9 with activationkey
+- name: register server with activation key and configure hostname
   hosts: rhel9
   tasks:
-    - name: register with subscription-manager
+    - name: register with activationkey
       community.general.redhat_subscription:
         state: present
         activationkey: Nassri-123
         org_id: 11009103
     - name: set hostname
       ansible.builtin.hostname:
-        name: rhel9.demo-lisbon.redhat.com
-    - name: install cockpit  
-      ansible.builtin.package:
-        name: cockpit
-        state: present
-    - name: start cockpit service 
-      ansible.builtin.service:
-        name: cockpit
-        state: started
-        enabled: true
-    - name: install firewall service 
-      ansible.builtin.package:
-        name: firewalld
-        state: present
-    - name : start firewalld service 
-      ansible.builtin.service:
-        name: firewalld
-        state: started
-        enabled: true
-
-
-
-
-
-
-
+        name: rhel9.demo-lisboa.redhat.com
