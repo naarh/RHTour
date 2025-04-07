@@ -1,12 +1,12 @@
 ---
-- name: register with activationkey and configure hostname
-  hosts: rhel9 
+- name: subscription-manager module demo
+  hosts: rhel9
   tasks:
-    - name: register with activationkey
+    - name: configure subscription
       community.general.redhat_subscription:
         state: present
         activationkey: Nassri-123
         org_id: 11009103
-    - name: configure hostname
+    - name: set hostname
       ansible.builtin.hostname:
-        name: rhel9.demo-lx.redhat.com
+        name: rhel9.demo-lisbon.redhat.com
