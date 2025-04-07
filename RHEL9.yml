@@ -19,4 +19,37 @@
         name: firewalld
         enabled: true
         state: started
+    - name : install httpd service 
+      ansible.builtin.package:
+        name: httpd
+        state: present
+    - name : install cockpit service 
+      ansible.builtin.package:
+        name: cockpit
+        state: present
+    - name : enable httpd and cockpit service 
+      ansible.builtin.service:
+        name: "{{ item }}"
+        enabled: true
+        state: started
+      loop:
+        - httpd
+        - cockpit
+    - name: update all packages via dnf  
+      ansible.builtin.package:
+        name: '*'
+        state: latest
+
+
+
+
+
+
+
+
+
+
+    
+
+
   
