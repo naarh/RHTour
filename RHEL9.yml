@@ -22,6 +22,11 @@
       ansible.builtin.package:
         name: cockpit
         state: present
+    - name: enable cockpit service 
+      ansible.builtin.service:
+        name: cockpit
+        state: started
+        enabled: true
     - name: enable cockpit service in firewall 
       ansible.posix.firewalld:
         service: cockpit
