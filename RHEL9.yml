@@ -1,22 +1,12 @@
 ---
-- name: register server with activation key and configure hostname
+- name: register server with subscription-manager and set hostname
   hosts: rhel9
   tasks:
-    - name: register with activationkey
+    - name: register with subscription-manager
       community.general.redhat_subscription:
         state: present
         activationkey: Nassri-123
         org_id: 11009103
-    - name: configure hostname
+    - name: set hostname
       ansible.builtin.hostname:
-        name: rhel9.demo-lisbon.redhat.com
-    - name: install firewall service 
-      ansible.builtin.package:
-        name: firewalld
-        state: latest
-    - name: enable firewall service 
-      ansible.builtin.service:
-        name: firewalld
-        enabled: true
-        state: started
-
+        name: rhel9.demo-lx.redhat.com
