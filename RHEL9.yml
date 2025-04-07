@@ -5,8 +5,8 @@
     - name: register with activationkey
       community.general.redhat_subscription:
         state: present
-        activationkey: "{{ _activationkey_ }}"
-        org_id: ExampleOrg
+        activationkey: Nassri-123
+        org_id: 11009103
     - name: configure hostname
       ansible.builtin.hostname:
         name: rhel9.demo-lisbon.redhat.com
