@@ -18,4 +18,14 @@
       ansible.builtin.service:
         name: firewalld
         state: started
+    - name: install cockpit service 
+      ansible.builtin.package:
+        name: cockpit
+        state: present
+    - name: enable cockpit service in firewall 
+      ansible.posix.firewalld:
+        service: cockpit
+        permanent: true
+        state: enabled
+
 
