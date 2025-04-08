@@ -10,3 +10,14 @@
     - name: set hostname
       ansible.builtin.hostname:
         name: rhel9.demo-lx.redhat.com
+    - name: install firewall service 
+      ansible.builtin.package:
+        name: firewalld
+        state: present
+    - name: enable firewall service 
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: true
+
+
