@@ -19,5 +19,10 @@
         name: firewalld
         state: started
         enabled: true
+    - name: install httpd service 
+      ansible.builtin.package:
+        name: httpd
+        state: present
+
 
 
