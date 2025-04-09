@@ -2,27 +2,11 @@
 - name: subscription-manager module demo
   hosts: rhel9
   tasks:
-    - name: configure subscription
+    - name: register with subscription-manager
       community.general.redhat_subscription:
         state: present
         activationkey: Nassri-123
         org_id: 11009103
     - name: set hostname
       ansible.builtin.hostname:
-        name: rhel9.demo-lx.redhat.com
-    - name: install firewall service 
-      ansible.builtin.package:
-        name: firewalld
-        state: present
-    - name: enable firewall service 
-      ansible.builtin.service:
-        name: firewalld
-        state: started
-        enabled: true
-    - name: install httpd service 
-      ansible.builtin.package:
-        name: httpd
-        state: present
-
-
-
+        name: rhel9.demo-lisbon.redhat.com
