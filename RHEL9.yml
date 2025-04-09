@@ -24,11 +24,15 @@
       ansible.builtin.package:
         name: httpd
         state: present
-
     - name: Start httpd service
       ansible.builtin.service:
         name: httpd
         state: started
         enabled: true
     - name: open httpd port om firewall 
-    
+      ansible.posix.firewalld:
+        service: http
+        permanent: true
+        state: enabled
+
+
