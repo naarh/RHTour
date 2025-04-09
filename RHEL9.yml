@@ -19,3 +19,16 @@
         name: firewalld
         state: started
         enabled: true
+    # install httpd service & start httpd service  
+    - name: Install httpd service
+      ansible.builtin.package:
+        name: httpd
+        state: present
+
+    - name: Start httpd service
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+    - name: open httpd port om firewall 
+    
