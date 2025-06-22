@@ -26,4 +26,8 @@
         name: httpd
         state: started
         enabled: true
+    - name: disable Selinux
+      ansible.posix.selinux:
+        state: disabled
+
 
