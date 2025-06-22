@@ -26,16 +26,4 @@
         name: httpd
         state: started
         enabled: true
-    - name: install cockpit service
-      ansible.builtin.package:
-        name: cockpit
-        state: present
-    - name: open firewall ports for httpd 
-      ansible.posix.firewalld:
-        service: http
-        permanent: true
-        state: enabled
-        immediate: true
-
-
 
