@@ -1,0 +1,29 @@
+---
+- name: Register RHEL 9 with activationkey
+  hosts: all
+  tasks:
+    - name: Register RHEL 9 with activationkey
+      community.general.redhat_subscription:
+        state: present
+        activationkey: Nassri-123
+        org_id: 11009103
+        auto_attach: true
+    - name: install firewall service
+      ansible.builtin.package:
+        name: firewalld
+        state: present
+    - name: start firewall service
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: true
+    - name: install httpd service
+      ansible.builtin.package:
+        name: httpd
+        state: present
+    - name: enable httpd service
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+
