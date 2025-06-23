@@ -1,12 +1,23 @@
 ---
-- name: register server with activation key and configure hostname
-  hosts: rhel9
+- name: Register RHEL 9 with an activation key
+  hosts: all
   tasks:
-    - name: register with activationkey
+    - name: Register RHEL 9 with an activation key
       community.general.redhat_subscription:
         state: present
         activationkey: "{{ _activationkey_ }}"
-        org_id: ExampleOrg
-    - name: configure hostname
+        org_id: Example
+        auto_attach: true
+    - name: Set hostname
       ansible.builtin.hostname:
-        name: rhel9.demo-lisbon.redhat.com
+        name: Rhel9.demo.redhat.com
+    - name: install firewall service
+      ansible.builtin.package:
+        name: firewalld
+        state: present
+    - name: enable Firewall service 
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: true
+
