@@ -1,0 +1,10 @@
+---
+- name: Register RHEL 9 with an activation key
+  hosts: rhel9
+  tasks:
+    - name: Register RHEL 9 with an activation key
+      community.general.redhat_subscription:
+        state: present
+        activationkey: Nassri-123
+        org_id: 11009103
+        
